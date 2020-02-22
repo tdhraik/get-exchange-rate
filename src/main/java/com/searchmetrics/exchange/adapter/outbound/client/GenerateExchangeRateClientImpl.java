@@ -11,6 +11,9 @@ public class GenerateExchangeRateClientImpl implements GenerateExchangeRateClien
     @Value("${generate.exchange.rate.latest.url}")
     private String generateExchangeRateUrl;
 
+    @Value("${generate.exchange.rate.historical.url}")
+    private String generateHistoricalExchangeRateUrl;
+
     private RestTemplate restTemplate;
 
     public GenerateExchangeRateClientImpl(RestTemplate restTemplate) {
@@ -21,5 +24,11 @@ public class GenerateExchangeRateClientImpl implements GenerateExchangeRateClien
     public String getLatestRate() {
         ResponseEntity<String> latestRate = restTemplate.getForEntity(generateExchangeRateUrl, String.class);
         return latestRate.getBody();
+    }
+
+    @Override
+    public String populateHistoricalRates() {
+        ResponseEntity<String> historicalRates = restTemplate.getForEntity(generateHistoricalExchangeRateUrl, String.class);
+        return historicalRates.getBody();
     }
 }

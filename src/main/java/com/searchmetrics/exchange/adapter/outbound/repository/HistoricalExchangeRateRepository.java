@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface HistoricalExchangeRateRepository extends MongoRepository<HistoricalExchangeRate, String> {
 
-    @Query("{ 'date' : { $gte: ?0 } , { $lte: ?1 } }")
+    @Query("{ 'date' : { $gte: ?0  ,  $lte: ?1 } }")
     List<HistoricalExchangeRate> findByDateRange(LocalDate from, LocalDate to, Sort sortOrder);
 
     default List<HistoricalExchangeRate> findByDateRangeSorted(LocalDate from, LocalDate to) {

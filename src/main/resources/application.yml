@@ -3,13 +3,13 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:29092
 
   data:
     mongodb:
       database: exchange_rate
       port: 27017
-      host: localhost
+      host: mongodb
   jackson:
     serialization:
       write_dates_as_timestamps: false
@@ -19,4 +19,6 @@ generate:
   exchange:
     rate:
       latest:
-        url: http://localhost:8193/generate/exchange/
+        url: http://generate-exchange-rate:8193/generate/exchange/latest
+      historical:
+        url: http://generate-exchange-rate:8193/generate/exchange/historic
