@@ -1,0 +1,22 @@
+server:
+  port: 8192
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+
+  data:
+    mongodb:
+      database: exchange_rate
+      port: 27017
+      host: localhost
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+
+generate:
+  exchange:
+    rate:
+      latest:
+        url: http://localhost:8193/generate/exchange/
