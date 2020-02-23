@@ -5,4 +5,6 @@ public interface GenerateExchangeRateClient {
     String getLatestRate();
 
     String populateHistoricalRates();
+
+    void refreshConfigurations();
 }

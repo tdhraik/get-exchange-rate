@@ -78,7 +78,7 @@ public class GetExchangeRateInteractorImpl implements GetExchangeRateInteractor 
         List<HistoricalExchangeRate> historicalRates = historicalRateRepository.findByDateRangeSorted(from, to);
         if(historicalRates.isEmpty()) {
             generateExchangeClient.populateHistoricalRates();
-            return new ArrayList<>();
+            return new ArrayList<>(); // will consume msgs through kafka consumer
         }
         return ExchangeRateMapper.toHistoricExchangeRateResponse(historicalRates);
     }

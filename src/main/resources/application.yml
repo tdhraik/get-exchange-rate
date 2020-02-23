@@ -2,6 +2,9 @@ server:
   port: 8192
 
 spring:
+  application:
+    name: get-exchange-rate
+
   kafka:
     bootstrap-servers: kafka:29092
 
@@ -10,11 +13,13 @@ spring:
       database: exchange_rate
       port: 27017
       host: mongodb
+
   jackson:
     serialization:
       write_dates_as_timestamps: false
 
 
+## application clients
 generate:
   exchange:
     rate:
@@ -22,3 +27,9 @@ generate:
         url: http://generate-exchange-rate:8193/generate/exchange/latest
       historical:
         url: http://generate-exchange-rate:8193/generate/exchange/historic
+
+  service:
+    actuator:
+      refresh: http://generate-exchange-rate:8193/actuator/refresh
+    scheduler:
+      refresh: http://generate-exchange-rate:8193/refresh
